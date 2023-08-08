@@ -1,8 +1,10 @@
 const input = document.querySelector('.input')
 const box2 = document.querySelector('.box2')
 const box3 = document.querySelector('.box3')
-
+const button = document.querySelector('.button')
 const inputPlaceholder = input.placeholder
+const forms = document.forms
+
 
 // Мой массив с задачами
 let task = []
@@ -33,10 +35,11 @@ input.addEventListener('blur', function () {
     input.placeholder = inputPlaceholder
 })
 
-input.addEventListener('keydown', addTask)
+button.addEventListener('click', addTask)
 
 function addTask (event) { 
-    if (event.code === 'Enter') {
+        event.preventDefault()
+
         const createTask = {
             id: Date.now(),
             text: input.value,
@@ -57,7 +60,7 @@ function addTask (event) {
         box2.insertAdjacentHTML('beforeend', todosText)
         input.value = ''
         
-    }
+    
     if (box2.children.length !== 0) {
         box3.innerHTML = `Колличество дел - ${box2.children.length} `
     } else {
